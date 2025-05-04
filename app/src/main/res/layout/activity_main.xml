@@ -22,16 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/editRepSec"-->
-<!--            android:hint="Repeticiones"-->
-<!--            android:inputType="number"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
-
         <EditText
             android:id="@+id/editTiempoRepets"
-            android:hint="Repeticiones o Tiempo (segundos)"
+            android:hint="Repeticiones o Tiempo (minutos)"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -56,6 +49,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnGetAll"
+            android:text="Obtener Todos los Ejercicios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editSearchName"
+            android:hint="Nombre a buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:text="Buscar por Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editDeleteName"
+            android:hint="Nombre a borrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:text="Borrar por Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editUpdateName"
+            android:hint="Nombre a actualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:text="Actualizar por Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="#000"
+            android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView>

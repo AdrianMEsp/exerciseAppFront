@@ -9,5 +9,16 @@ interface ApiService {
     fun addExercise(@Body exercise: Exercise): Call<ResponseBody>
 
     @GET("api/v1/exercise")
-    suspend fun getExercises(): List<Exercise>
+    fun getExercises(): Call<List<Exercise>>
+    
+    @GET("api/v1/exercise/{name}")
+    fun getExerciseByName(@Path("name") name: String): Call<Exercise>
+
+    @DELETE("/api/v1/exercise/{name}")
+    fun deleteExerciseByName(@Path("name") name: String): Call<ResponseBody>
+
+    @PUT("/api/v1/exercise/{name}")
+    fun updateExerciseByName(
+        @Path("name") name: String,
+        @Body exercise: Exercise): Call<ResponseBody>
 }
