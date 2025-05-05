@@ -1,5 +1,6 @@
 package com.example.exerciseapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnGetAll.setOnClickListener {
-            api.getExercises().enqueue(object : Callback<List<Exercise>> {
+            api.getAllExercises().enqueue(object : Callback<List<Exercise>> {
 
                 override fun onResponse(
                     call: Call<List<Exercise>>,
@@ -88,15 +89,12 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val exercises = response.body() ?: emptyList()
-                        val result = exercises.joinToString("\n") { it.toString() }
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Exercises:\n$result",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        val intent = Intent(this@MainActivity, ExerciseListActivity::class.java)
+                        intent.putParcelableArrayListExtra("exercises", ArrayList(exercises))
+                        startActivity(intent)
                     } else {
                         Toast.makeText( this@MainActivity,
-                        "Error obtaining exercises: ${response.code()}",
+                            "Error obtaining exercises: ${response.code()}",
                             Toast.LENGTH_LONG)
                             .show()
                     }

@@ -8,8 +8,8 @@ interface ApiService {
     @POST("/api/v1/exercise/add")
     fun addExercise(@Body exercise: Exercise): Call<ResponseBody>
 
-    @GET("api/v1/exercise")
-    fun getExercises(): Call<List<Exercise>>
+    @GET("/api/v1/exercise")
+    fun getAllExercises(): Call<List<Exercise>>
     
     @GET("api/v1/exercise/{name}")
     fun getExerciseByName(@Path("name") name: String): Call<Exercise>
