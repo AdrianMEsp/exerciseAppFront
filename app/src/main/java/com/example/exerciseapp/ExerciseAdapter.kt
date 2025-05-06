@@ -28,5 +28,10 @@ class ExerciseAdapter(private val exercises: List<Exercise>) :
                 "Descripción: ${exercise.description}"
     }
 
+    fun updateData(newExercises: List<Exercise>) {
+        val exercises = newExercises
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int = exercises.size
 }

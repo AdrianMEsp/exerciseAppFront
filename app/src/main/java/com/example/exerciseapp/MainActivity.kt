@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         api = retrofit.create(ApiService::class.java)
 
         val btnGetAll = findViewById<Button>(R.id.btnGetAll)
-        val editSearchName = findViewById<EditText>(R.id.editSearchName)
-        val btnSearch = findViewById<Button>(R.id.btnSearch)
+//        val editSearchName = findViewById<EditText>(R.id.editSearchName)
+//        val btnSearch = findViewById<Button>(R.id.btnSearch)
         val editDeleteName = findViewById<EditText>(R.id.editDeleteName)
         val btnDelete = findViewById<Button>(R.id.btnDelete)
         val editUpdateName = findViewById<EditText>(R.id.editUpdateName)
@@ -83,20 +83,14 @@ class MainActivity : AppCompatActivity() {
         btnGetAll.setOnClickListener {
             api.getAllExercises().enqueue(object : Callback<List<Exercise>> {
 
-                override fun onResponse(
-                    call: Call<List<Exercise>>,
-                    response: Response<List<Exercise>>
-                ) {
+                override fun onResponse(call: Call<List<Exercise>>, response: Response<List<Exercise>>) {
                     if (response.isSuccessful) {
                         val exercises = response.body() ?: emptyList()
                         val intent = Intent(this@MainActivity, ExerciseListActivity::class.java)
                         intent.putParcelableArrayListExtra("exercises", ArrayList(exercises))
                         startActivity(intent)
                     } else {
-                        Toast.makeText( this@MainActivity,
-                            "Error obtaining exercises: ${response.code()}",
-                            Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(this@MainActivity, "Error al obtener ejercicios: ${response.code()}", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -109,39 +103,39 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        btnSearch.setOnClickListener {
-            val nameToSearch = editSearchName.text.toString()
-            api.getExerciseByName(nameToSearch).enqueue(object : Callback<Exercise> { // Cambiado a Callback<Exercise>
-                override fun onResponse(call: Call<Exercise>, response: Response<Exercise>) {
-                    if (response.isSuccessful) {
-                        val exercise = response.body() // Obtenemos un solo Exercise, no una lista
-                        if (exercise != null) {
-                            Toast.makeText(this@MainActivity,
-                                "Exercise found:\n$exercise",
-                                Toast.LENGTH_LONG)
-                                .show()
-                        } else {
-                            Toast.makeText(this@MainActivity,
-                                "Exercise: $nameToSearch not found",
-                                Toast.LENGTH_LONG)
-                                .show()
-                        }
-                    } else {
-                        Toast.makeText(this@MainActivity,
-                            "Error at searching: ${response.code()}",
-                            Toast.LENGTH_LONG)
-                            .show()
-                    }
-                }
-
-                override fun onFailure(call: Call<Exercise>, t: Throwable) {
-                    Toast.makeText(this@MainActivity,
-                        "Failed at find: ${t.message}",
-                        Toast.LENGTH_LONG)
-                        .show()
-                }
-            })
-        }
+//        btnSearch.setOnClickListener {
+//            val nameToSearch = editSearchName.text.toString()
+//            api.getExerciseByName(nameToSearch).enqueue(object : Callback<Exercise> { // Cambiado a Callback<Exercise>
+//                override fun onResponse(call: Call<Exercise>, response: Response<Exercise>) {
+//                    if (response.isSuccessful) {
+//                        val exercise = response.body() // Obtenemos un solo Exercise, no una lista
+//                        if (exercise != null) {
+//                            Toast.makeText(this@MainActivity,
+//                                "Exercise found:\n$exercise",
+//                                Toast.LENGTH_LONG)
+//                                .show()
+//                        } else {
+//                            Toast.makeText(this@MainActivity,
+//                                "Exercise: $nameToSearch not found",
+//                                Toast.LENGTH_LONG)
+//                                .show()
+//                        }
+//                    } else {
+//                        Toast.makeText(this@MainActivity,
+//                            "Error at searching: ${response.code()}",
+//                            Toast.LENGTH_LONG)
+//                            .show()
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<Exercise>, t: Throwable) {
+//                    Toast.makeText(this@MainActivity,
+//                        "Failed at find: ${t.message}",
+//                        Toast.LENGTH_LONG)
+//                        .show()
+//                }
+//            })
+//        }
 
         btnDelete.setOnClickListener {
             val nameToDelete = editDeleteName.text.toString()
